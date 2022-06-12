@@ -8,8 +8,7 @@ readFile('hello.txt', 'utf8', (err,txt) =>{
 const express = require('express');
 
 const app = express();
-
-app.use(express.static('wordnet'));
+app.use(express.static(__dirname + '/public')); 
 
 
 app.get('/', (request, response) => {
@@ -26,7 +25,18 @@ app.get('/', (request, response) => {
 
 
 
+
 app.listen(process.env.PORT || 3000, () => console.log('App available on http://localhost:3000'));
+
+
+
+
+
+
+
+
+
+
 
 
 
