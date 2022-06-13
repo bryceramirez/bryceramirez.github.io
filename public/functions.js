@@ -36,6 +36,15 @@
         // var output = _.sortBy(filteredMovies, "avg_vote").reverse()
         // Once I had all the values in my output variable, all I needed was to loop through them and add them to the table one by one. This was done using d3, where I inserted the value for each one of the columns I wanted using the necessary html to fit each table row.
         
+        for (var i = 0; i < resultForWord.length; i++) {
+            if(resultForWord[i]["word"]==inputValue){
+                console.log("im here")
+                var copy = resultForWord[i]
+                resultForWord.splice(i, 1)
+                resultForWord.unshift(copy)
+            }
+        }
+
         if(resultForWord.length==0){
             d3.select("tbody").insert("tr").html(
             "<td>" + "" + "</td>" +
