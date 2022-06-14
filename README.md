@@ -20,7 +20,7 @@ This is an online web portal that allows users to access the *FilWordNet*.
 1. Download the zipfile in this repository.
 2. Extract the zipfile.
 3. Open the command prompt in the directory where the files were extracted.
-4. Install the packages of the webportal by entering *npm install --save* in the command prompt.
-5. After the successful install of packages, enter *node .*.
+4. Install the packages of the webportal by entering '**npm install --save**' in the command prompt.
+5. After the successful install of packages, enter '**node .**'.
 6. Proceed to your browser at http://localhost:3000
 7. Use the FilWordNet as described in the Usage Guide.
