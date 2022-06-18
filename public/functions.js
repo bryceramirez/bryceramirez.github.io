@@ -56,11 +56,13 @@
         }
 
         for (var i = 0; i < resultForWord.length; i++) {
-            var synsets = wordnet.filter(wordnet => wordnet.synset_id.includes(resultForWord[i]["synset_id"]));
+            var synsets = wordnet.filter(wordnet => wordnet.synset_id == resultForWord[i]["synset_id"]);
             var synset_members = "";
-            for (var j = 0; j < synsets.length; j++) {
-                synset_members = synset_members + " " + synsets[j]["word"]
+            synset_members = "" + synsets[0]["word"]
+            for (var j = 1; j < synsets.length; j++) {
+                synset_members = synset_members + ", " + synsets[j]["word"]
             }
+
             console.log(synset_members)
             d3.select("tbody").insert("tr").html(
             "<td>" + [i+1] + "</td>" +
