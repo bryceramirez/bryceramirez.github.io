@@ -1,11 +1,4 @@
-
-    console.log("first")
-
-    d3.csv("filwordnet.csv").then(function (data) {
-    console.log("data " + data);
-
-
-    
+d3.csv("filwordnet.csv").then(function (data) {
     var wordnet = data;
 
     var button = d3.select("#button");
@@ -16,7 +9,6 @@
 
     // Defining the function
     function runEnter() {
-        console.log("hello")
         // This line of code selects the <tbody> from the html and clears it. If this is not used, then the results would appear on top of the previous result.
         d3.select("tbody").html("") 
         
@@ -29,7 +21,7 @@
         // This code will filter the movies looking at the actors column. It will store the values when there is a match from the text sequence the user entered and the text from our actors column from the CSV data.
         var resultForWord = wordnet.filter(wordnet => wordnet.word.includes(inputValue));
 
-        console.log(resultForWord)
+        // console.log(resultForWord)
         
         // This was the easiest approach I found to sort the results by a different column in descending order. I had to include a new script in my head to use the _.sortBy 
         //This is the script:  
@@ -38,7 +30,6 @@
         
         for (var i = 0; i < resultForWord.length; i++) {
             if(resultForWord[i]["word"]==inputValue){
-                console.log("im here")
                 var copy = resultForWord[i]
                 resultForWord.splice(i, 1)
                 resultForWord.unshift(copy)
@@ -56,12 +47,15 @@
         }
 
         for (var i = 0; i < resultForWord.length; i++) {
-            var synsets = wordnet.filter(wordnet => wordnet.synset_id.includes(resultForWord[i]["synset_id"]));
+            var synsets = wordnet.filter(wordnet => wordnet.synset_id == resultForWord[i]["synset_id"]);
+            // console.log(synsets)
             var synset_members = "";
-            for (var j = 0; j < synsets.length; j++) {
-                synset_members = synset_members + " " + synsets[j]["word"]
+            synset_members = "" + synsets[0]["word"]
+            for (var j = 1; j < synsets.length; j++) {
+                synset_members = synset_members + ", " + synsets[j]["word"]
             }
-            console.log(synset_members)
+
+            // console.log(synset_members)
             d3.select("tbody").insert("tr").html(
             "<td>" + [i+1] + "</td>" +
             "<td>" + (resultForWord[i]["word"])+"</a>"+"</td>" + 
